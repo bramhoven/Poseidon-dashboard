@@ -1,0 +1,54 @@
+<div fxLayout="column" fxLayoutGap="10px">
+    <div fxFlex="25">
+        <div fxLayout="row" fxLayoutGap="10px">
+            <div fxFlex="10">
+                <div fxLayout="column" fxLayoutGap="10px">
+                    <div fxFlex="50">
+                        <mat-card class="statistics-card">
+                            <mat-card-content>
+                                <h2>Servers</h2>
+                                <h1>25</h1>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                    <div fxFlex="50">
+                        <mat-card class="statistics-card">
+                            <mat-card-content>
+                                <h2>Users</h2>
+                                <h1>7</h1>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                </div>
+            </div>
+            <div fxFlex="25">
+                <mat-card class="events-card">
+                    <mat-card-header>
+                      <mat-card-title>Recent events</mat-card-title>
+                      <mat-card-subtitle>Click on the event for further details</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <mat-selection-list [multiple]="false">
+                            <mat-list-option *ngFor="let event of recentEvents">
+                                <div fxLayout="row" fxLayoutGap="10px">
+                                    <div>
+                                        <mat-chip-list>
+                                            <mat-chip class="timestamp-chip">
+                                                {{getDateString(event.timestamp)}}
+                                            </mat-chip>
+                                        </mat-chip-list>
+                                    </div>
+                                    <div>
+                                        <span class="event-message">{{event.message}}</span>
+                                    </div>
+                                </div>
+                            </mat-list-option>
+                          </mat-selection-list>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+
+    </div>
+    <div fxFlex="25"></div>
+</div>
