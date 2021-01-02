@@ -35,5 +35,7 @@ export class ServerOverviewComponent implements OnInit, AfterViewInit {
 
   refresh() {
     this.dataSource = new MatTableDataSource<Server>(this.servers);
+    if(this.paginator)
+      this.dataSource.paginator = this.paginator;
   }
 }
