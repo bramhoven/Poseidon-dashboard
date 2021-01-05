@@ -11,6 +11,14 @@ import {MatListModule} from '@angular/material/list';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableModule} from '@angular/material/table';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+import {MatInputModule} from '@angular/material/input';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +29,8 @@ import { ServerOverviewComponent } from './components/server-overview/server-ove
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { CreateServerComponent } from './components/create-server/create-server.component';
+import { CreateServerDialogComponent } from './components/create-server-dialog/create-server-dialog.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +40,9 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
     ServerOverviewComponent,
     NavbarComponent,
     FooterComponent,
-    SidenavComponent
+    SidenavComponent,
+    CreateServerComponent,
+    CreateServerDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +58,15 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
     MatListModule,
     MatChipsModule,
     MatPaginatorModule,
-    MatTableModule
+    MatTableModule,
+    MatButtonModule,
+    MatIconModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
+    MatStepperModule,
+    MatAutocompleteModule
   ],
   providers: [],
   bootstrap: [AppComponent]

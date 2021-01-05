@@ -1,0 +1,77 @@
+<div class="create-server-container">
+    <mat-vertical-stepper [linear]="true" #stepper>
+        <mat-step [stepControl]="serverStart">
+            <form [formGroup]="serverStart">
+                <ng-template matStepLabel>Start</ng-template>
+                
+                <mat-form-field appearance="fill">
+                    <mat-label>Cloud provider</mat-label>
+                    <mat-select formControlName="providerControl">
+                      <mat-option *ngFor="let provider of cloudProviders" [value]="provider.id">{{provider.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <br/>
+            
+                <mat-form-field appearance="fill">
+                    <mat-label>Name</mat-label>
+                    <input matInput placeholder="Server name" formControlName="serverName">
+                </mat-form-field>
+                
+                <div>
+                    <button mat-button matStepperNext>Next</button>
+                </div>
+            </form>
+        </mat-step>
+
+        <mat-step [stepControl]="serverDetails">
+            <form [formGroup]="serverDetails">
+                <ng-template matStepLabel>Server details</ng-template>
+                
+                <mat-form-field appearance="fill">
+                    <mat-label>Region</mat-label>
+                    <input type="text"
+                        placeholder="Region"
+                        matInput
+                        [formControl]="regionControl"
+                        [matAutocomplete]="autoRegion"/>
+                    <mat-autocomplete #autoRegion="matAutocomplete">
+                        <mat-option *ngFor="let region of filteredOptionsRegion | async" [value]="region.name">{{region.name}}</mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+
+                <br/>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Size</mat-label>
+                    <input type="text"
+                        placeholder="Size"
+                        matInput
+                        [formControl]="sizeControl"
+                        [matAutocomplete]="autoSize"/>
+                    <mat-autocomplete #autoSize="matAutocomplete">
+                        <mat-option *ngFor="let size of filteredOptionsSize | async" [value]="size.name">{{size.name}}</mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+
+                <br/>
+            
+                <mat-form-field appearance="fill">
+                    <mat-label>Image</mat-label>
+                    <input type="text"
+                        placeholder="Image"
+                        matInput
+                        [formControl]="imageControl"
+                        [matAutocomplete]="autoImage"/>
+                    <mat-autocomplete #autoImage="matAutocomplete">
+                        <mat-option *ngFor="let image of filteredOptionsImage | async" [value]="image.name">{{image.name}}</mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+                
+                <div>
+                    <button mat-button matStepperNext>Next</button>
+                </div>
+            </form>
+        </mat-step>
+    </mat-vertical-stepper>
+</div>

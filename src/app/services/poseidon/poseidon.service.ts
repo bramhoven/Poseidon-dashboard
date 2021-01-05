@@ -5,6 +5,10 @@ import {environment} from '../../../environments/environment';
 
 import { Statistics } from 'src/app/models/poseidon/statistics.model';
 import { Server } from 'src/app/models/poseidon/server.model';
+import { ServerImage } from 'src/app/models/poseidon/server-image.model';
+import { CloudProvider } from 'src/app/models/poseidon/cloud-provider.model';
+import { ServerSize } from 'src/app/models/poseidon/server-size.model';
+import { Region } from 'src/app/models/poseidon/region.model';
 
 @Injectable({
   providedIn: 'root'
@@ -21,5 +25,20 @@ export class PoseidonService {
   getServers(): Observable<Server[]> {
     var url = `${environment.poseidon.host}/servers`;
     return this.http.get<Server[]>(url);
+  }
+
+  getRegions(provider: CloudProvider): Observable<Region[]> {
+    var url = `${environment.poseidon.host}/${provider.slug}/regions`;
+    return this.http.get<Region[]>(url);
+  }
+
+  getSizes(provider: CloudProvider): Observable<ServerSize[]> {
+    var url = `${environment.poseidon.host}/${provider.slug}/sizes`;
+    return this.http.get<ServerSize[]>(url);
+  }
+
+  getImages(provider: CloudProvider): Observable<ServerImage[]> {
+    var url = `${environment.poseidon.host}/${provider.slug}/images`;
+    return this.http.get<ServerImage[]>(url);
   }
 }

@@ -1,15 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
+import { CreateServerDialogComponent } from '../create-server-dialog/create-server-dialog.component';
 
 @Component({
   selector: 'navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
-})
-export class NavbarComponent implements OnInit {
+})  
+export class NavbarComponent {
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
-  ngOnInit(): void {
+  openDialog() {
+    const dialogRef = this.dialog.open(CreateServerDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      
+    });
   }
-
 }
