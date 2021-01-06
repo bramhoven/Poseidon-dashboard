@@ -1,6 +1,25 @@
 .create-server-container {
     min-width: 500px;
     max-width: 600px;
+    min-height: 500px;
+    position: relative;
+
+    .create-server-error {
+        padding: 20px 0px 0px 20px;
+        color: red;
+        .error-message {
+            font-size: 1.2em;
+        }
+        
+        .error-list {
+            padding: 0px 0px 0px 20px;
+            .error-item {
+                color:red;
+                font-size: 1em;
+                height: unset;
+            }
+        }
+    }
 
     mat-form-field {
         width: 100%;
@@ -12,5 +31,17 @@
 
     .mat-form-field {
         margin-top: 16px;
+    }
+
+    .create-server-loading {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+
+        .crease-server-loading-column {
+            height: 100%;
+        }
     }
 }

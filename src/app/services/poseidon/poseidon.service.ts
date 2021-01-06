@@ -9,6 +9,8 @@ import { ServerImage } from 'src/app/models/poseidon/server-image.model';
 import { CloudProvider } from 'src/app/models/poseidon/cloud-provider.model';
 import { ServerSize } from 'src/app/models/poseidon/server-size.model';
 import { Region } from 'src/app/models/poseidon/region.model';
+import { PublicSshKey } from 'src/app/models/poseidon/public-ssh-key.model';
+import { CreateServerRequest } from 'src/app/models/poseidon/requests/create-server-request.model';
 
 @Injectable({
   providedIn: 'root'
@@ -40,5 +42,15 @@ export class PoseidonService {
   getImages(provider: CloudProvider): Observable<ServerImage[]> {
     var url = `${environment.poseidon.host}/${provider.slug}/images`;
     return this.http.get<ServerImage[]>(url);
+  }
+
+  getSshKeys(provider: CloudProvider): Observable<PublicSshKey[]> {
+    var url = `${environment.poseidon.host}/${provider.slug}/sshkeys`;
+    return this.http.get<PublicSshKey[]>(url);
+  }
+
+  createServer(provider: CloudProvider, server: CreateServerRequest): Observable<Server> {
+    var url = `${environment.poseidon.host}/${provider.slug}/servers`;
+    return this.http.post<Server>(url, server);
   }
 }

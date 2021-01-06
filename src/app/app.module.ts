@@ -19,6 +19,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,6 +32,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { CreateServerComponent } from './components/create-server/create-server.component';
 import { CreateServerDialogComponent } from './components/create-server-dialog/create-server-dialog.component';
+import { CreateServerPageComponent } from './components/create-server-page/create-server-page.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,8 @@ import { CreateServerDialogComponent } from './components/create-server-dialog/c
     FooterComponent,
     SidenavComponent,
     CreateServerComponent,
-    CreateServerDialogComponent
+    CreateServerDialogComponent,
+    CreateServerPageComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +69,8 @@ import { CreateServerDialogComponent } from './components/create-server-dialog/c
     MatSelectModule,
     MatInputModule,
     MatStepperModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

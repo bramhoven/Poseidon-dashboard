@@ -1,77 +1,115 @@
 <div class="create-server-container">
-    <mat-vertical-stepper [linear]="true" #stepper>
-        <mat-step [stepControl]="serverStart">
-            <form [formGroup]="serverStart">
-                <ng-template matStepLabel>Start</ng-template>
+    <div class="create-server-error" *ngIf="showError()">
+        <p class="error-message">{{error.message}}</p>
+        <mat-list class="error-list">
+            <mat-list-item *ngFor="let error of error.errors" class="error-item">{{error}}</mat-list-item>
+        </mat-list>
+    </div>
+    <div class="create-server-stepper" *ngIf="showStepper">
+        <mat-vertical-stepper [linear]="true" #stepper>
+            <mat-step [stepControl]="serverStart">
+                <form [formGroup]="serverStart">
+                    <ng-template matStepLabel>Start</ng-template>
+                    
+                    <mat-form-field appearance="fill">
+                        <mat-label>Cloud provider</mat-label>
+                        <mat-select formControlName="providerControl">
+                        <mat-option *ngFor="let provider of cloudProviders" [value]="provider.id">{{provider.name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <br/>
                 
-                <mat-form-field appearance="fill">
-                    <mat-label>Cloud provider</mat-label>
-                    <mat-select formControlName="providerControl">
-                      <mat-option *ngFor="let provider of cloudProviders" [value]="provider.id">{{provider.name}}</mat-option>
-                    </mat-select>
-                </mat-form-field>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Name</mat-label>
+                        <input matInput placeholder="Server name" formControlName="serverNameControl">
+                    </mat-form-field>
+                    
+                    <div>
+                        <button mat-button matStepperNext>Next</button>
+                    </div>
+                </form>
+            </mat-step>
 
-                <br/>
-            
-                <mat-form-field appearance="fill">
-                    <mat-label>Name</mat-label>
-                    <input matInput placeholder="Server name" formControlName="serverName">
-                </mat-form-field>
+            <mat-step [stepControl]="serverDetails">
+                <form [formGroup]="serverDetails">
+                    <ng-template matStepLabel>Server details</ng-template>
+                    
+                    <mat-form-field appearance="fill">
+                        <mat-label>Region</mat-label>
+                        <input type="text"
+                            placeholder="Region"
+                            matInput
+                            [formControl]="regionControl"
+                            [matAutocomplete]="autoRegion"/>
+                        <mat-autocomplete #autoRegion="matAutocomplete">
+                            <mat-option *ngFor="let region of filteredOptionsRegion | async" [value]="region.name">{{region.name}}</mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+
+                    <br/>
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>Size</mat-label>
+                        <input type="text"
+                            placeholder="Size"
+                            matInput
+                            [formControl]="sizeControl"
+                            [matAutocomplete]="autoSize"/>
+                        <mat-autocomplete #autoSize="matAutocomplete">
+                            <mat-option *ngFor="let size of filteredOptionsSize | async" [value]="size.name">{{size.name}}</mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+
+                    <br/>
                 
-                <div>
-                    <button mat-button matStepperNext>Next</button>
-                </div>
-            </form>
-        </mat-step>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Image</mat-label>
+                        <input type="text"
+                            placeholder="Image"
+                            matInput
+                            [formControl]="imageControl"
+                            [matAutocomplete]="autoImage"/>
+                        <mat-autocomplete #autoImage="matAutocomplete">
+                            <mat-option *ngFor="let image of filteredOptionsImage | async" [value]="image.description">{{image.description}}</mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                    
+                    <div>
+                        <button mat-button matStepperNext>Next</button>
+                    </div>
+                </form>
+            </mat-step>
 
-        <mat-step [stepControl]="serverDetails">
-            <form [formGroup]="serverDetails">
-                <ng-template matStepLabel>Server details</ng-template>
-                
-                <mat-form-field appearance="fill">
-                    <mat-label>Region</mat-label>
-                    <input type="text"
-                        placeholder="Region"
-                        matInput
-                        [formControl]="regionControl"
-                        [matAutocomplete]="autoRegion"/>
-                    <mat-autocomplete #autoRegion="matAutocomplete">
-                        <mat-option *ngFor="let region of filteredOptionsRegion | async" [value]="region.name">{{region.name}}</mat-option>
-                    </mat-autocomplete>
-                </mat-form-field>
+            <mat-step [stepControl]="serverSecurity">
+                <form [formGroup]="serverSecurity">
+                    <ng-template matStepLabel>Server security</ng-template>
+                    
+                    <mat-form-field appearance="fill">
+                        <mat-label>Ssh key</mat-label>
+                        <input type="text"
+                            placeholder="Ssh"
+                            matInput
+                            [formControl]="sshKeyControl"
+                            [matAutocomplete]="autoSsh"/>
+                        <mat-autocomplete #autoSsh="matAutocomplete">
+                            <mat-option *ngFor="let ssh of filteredOptionsSshKey | async" [value]="ssh.name">{{ssh.name}}</mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                    
+                    <div>
+                        <button mat-button (click)="createServer()">Finish</button>
+                    </div>
+                </form>
+            </mat-step>
+        </mat-vertical-stepper>
+    </div>
 
-                <br/>
-
-                <mat-form-field appearance="fill">
-                    <mat-label>Size</mat-label>
-                    <input type="text"
-                        placeholder="Size"
-                        matInput
-                        [formControl]="sizeControl"
-                        [matAutocomplete]="autoSize"/>
-                    <mat-autocomplete #autoSize="matAutocomplete">
-                        <mat-option *ngFor="let size of filteredOptionsSize | async" [value]="size.name">{{size.name}}</mat-option>
-                    </mat-autocomplete>
-                </mat-form-field>
-
-                <br/>
-            
-                <mat-form-field appearance="fill">
-                    <mat-label>Image</mat-label>
-                    <input type="text"
-                        placeholder="Image"
-                        matInput
-                        [formControl]="imageControl"
-                        [matAutocomplete]="autoImage"/>
-                    <mat-autocomplete #autoImage="matAutocomplete">
-                        <mat-option *ngFor="let image of filteredOptionsImage | async" [value]="image.name">{{image.name}}</mat-option>
-                    </mat-autocomplete>
-                </mat-form-field>
-                
-                <div>
-                    <button mat-button matStepperNext>Next</button>
-                </div>
-            </form>
-        </mat-step>
-    </mat-vertical-stepper>
+    <div class="create-server-loading" *ngIf="showLoading">
+        <div class="crease-server-loading-column" fxLayout="column" fxLayoutAlign="center">
+            <div fxLayout="row" fxLayoutAlign="center">
+                <mat-spinner></mat-spinner>
+            </div>
+        </div>
+    </div>
 </div>
