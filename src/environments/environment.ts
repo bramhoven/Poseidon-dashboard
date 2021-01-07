@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   poseidon: {
-    host: 'https://localhost:44327'
+    host: 'http://localhost:8080'
   }
 };
 
