@@ -13,9 +13,14 @@
                     
                     <mat-form-field appearance="fill">
                         <mat-label>Cloud provider</mat-label>
-                        <mat-select formControlName="providerControl">
-                        <mat-option *ngFor="let provider of cloudProviders" [value]="provider.id">{{provider.name}}</mat-option>
-                        </mat-select>
+                        <input type="text"
+                            placeholder="Cloud provider"
+                            matInput
+                            [formControl]="providerControl"
+                            [matAutocomplete]="autoCloudProvider"/>
+                        <mat-autocomplete #autoCloudProvider="matAutocomplete">
+                            <mat-option *ngFor="let provider of filteredOptionsCloudProviders | async" [value]="provider.name">{{provider.name}}</mat-option>
+                        </mat-autocomplete>
                     </mat-form-field>
 
                     <br/>

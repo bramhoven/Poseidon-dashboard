@@ -7,7 +7,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { ServerSize } from 'src/app/models/poseidon/server-size.model';
 import { ServerImage } from 'src/app/models/poseidon/server-image.model';
 import { PoseidonService } from 'src/app/services/poseidon/poseidon.service';
-import { Observable } from 'rxjs';
+import { observable, Observable } from 'rxjs';
 import { Region } from 'src/app/models/poseidon/region.model';
 import { PublicSshKey } from 'src/app/models/poseidon/public-ssh-key.model';
 import { CreateServerRequest } from 'src/app/models/poseidon/requests/create-server-request.model';
@@ -42,6 +42,12 @@ export class CreateServerComponent {
   /// **********************
   ///     Filter options
   /// **********************
+  public filteredOptionsCloudProviders: Observable<CloudProvider[]> = new Observable<CloudProvider[]>(observable => {
+    this.providerControl.valueChanges.subscribe(value => {
+      observable.next(this._filterCloudProviders(value));
+    }); 
+  });
+
   public filteredOptionsRegion: Observable<Region[]> = new Observable<Region[]>(observable => {
     this.regionControl.valueChanges.subscribe((value) => {
       observable.next(this._filterRegion(value));
@@ -76,8 +82,10 @@ export class CreateServerComponent {
   public showError: any = () => this.error != undefined;
   
   constructor(private formBuilder: FormBuilder, private poseidon: PoseidonService, private router: Router) {
-    this.cloudProviders.push(new CloudProvider("0", "Digital Ocean", "digitalocean"));
-    this.cloudProviders.push(new CloudProvider("1", "OVH", "ovh"));
+    this.poseidon.getProviders().subscribe(providers => {
+      this.cloudProviders = providers;
+      this.providerControl.setValue('');
+    });
   }
 
   ngOnInit() {
@@ -94,8 +102,8 @@ export class CreateServerComponent {
       sshKeyControl: this.sshKeyControl
     });
 
-    this.providerControl.valueChanges.subscribe(() => {
-      this.providerName = this.cloudProviders.filter(p => p.id == this.providerControl.value)[0];
+    this.providerControl.valueChanges.subscribe(value => {
+      this.providerName = this.cloudProviders.filter(p => p.name == value)[0];
 
       if(this.providerName !== undefined) {
         this.poseidon.getRegions(this.providerName).subscribe(regions => {
@@ -183,6 +191,11 @@ export class CreateServerComponent {
   /// **********************
   ///    Filter functions
   /// **********************
+  private _filterCloudProviders(value: string): CloudProvider[] {
+    const filterValue = value.toLowerCase();
+    return _.uniqBy(this.cloudProviders.filter(cloudProvider => cloudProvider.name.toLowerCase().includes(filterValue)).sort((a, b) => a.name.localeCompare(b.name)), 'name');
+  }
+
   private _filterRegion(value: string): Region[] {
     const filterValue = value.toLowerCase();
     return _.uniqBy(this.regions.filter(region => region.name.toLowerCase().includes(filterValue)).sort((a, b) => a.name.localeCompare(b.name)), 'name');

@@ -19,6 +19,11 @@ export class PoseidonService {
 
   constructor(private http: HttpClient) { }
 
+  getProviders(): Observable<CloudProvider[]> {
+    var url = `${environment.poseidon.host}/poseidon/providers`;
+    return this.http.get<CloudProvider[]>(url);
+  }
+
   getStatistics(): Observable<Statistics> {
     var url = `${environment.poseidon.host}/statistics`;
     return this.http.get<Statistics>(url);
