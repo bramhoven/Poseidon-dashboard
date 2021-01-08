@@ -25,8 +25,18 @@ export class PoseidonService {
   }
 
   getServers(): Observable<Server[]> {
-    var url = `${environment.poseidon.host}/servers`;
+    var url = `${environment.poseidon.host}/poseidon/servers`;
     return this.http.get<Server[]>(url);
+  }
+
+  getServer(serverId: string): Observable<Server> {
+    var url = `${environment.poseidon.host}/poseidon/servers/${serverId}`;
+    return this.http.get<Server>(url);
+  }
+
+  deleteServer(serverId: string): Observable<any> {
+    var url = `${environment.poseidon.host}/poseidon/servers/${serverId}`;
+    return this.http.delete<any>(url);
   }
 
   getRegions(provider: CloudProvider): Observable<Region[]> {

@@ -4,6 +4,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import { PoseidonService } from 'src/app/services/poseidon/poseidon.service';
 import {Server} from 'src/app/models/poseidon/server.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'server-overview',
@@ -18,7 +19,7 @@ export class ServerOverviewComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator?: MatPaginator;
 
-  constructor(private poseidon: PoseidonService) {
+  constructor(private poseidon: PoseidonService, private router: Router) {
   }
 
   ngOnInit() {
@@ -31,6 +32,10 @@ export class ServerOverviewComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     if(this.paginator)
       this.dataSource.paginator = this.paginator;
+  }
+
+  gotoServer(server: Server) {
+    this.router.navigate([`servers/${server.id}`]);
   }
 
   refresh() {

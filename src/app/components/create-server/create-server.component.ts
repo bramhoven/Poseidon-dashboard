@@ -148,7 +148,7 @@ export class CreateServerComponent {
     console.log(serverRequest);
 
     this.poseidon.createServer(this.providerName, serverRequest).subscribe(server => {
-      this.router.navigate([`/server/${server.id}`]);
+      this.router.navigate([`/servers/${server.id}`]);
     }, httpError => {
       this.error = httpError.error as ErrorModel;
       this.showStepper = true;

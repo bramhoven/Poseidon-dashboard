@@ -20,6 +20,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -33,6 +35,7 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { CreateServerComponent } from './components/create-server/create-server.component';
 import { CreateServerDialogComponent } from './components/create-server-dialog/create-server-dialog.component';
 import { CreateServerPageComponent } from './components/create-server-page/create-server-page.component';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +48,8 @@ import { CreateServerPageComponent } from './components/create-server-page/creat
     SidenavComponent,
     CreateServerComponent,
     CreateServerDialogComponent,
-    CreateServerPageComponent
+    CreateServerPageComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +74,9 @@ import { CreateServerPageComponent } from './components/create-server-page/creat
     MatInputModule,
     MatStepperModule,
     MatAutocompleteModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatTabsModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
