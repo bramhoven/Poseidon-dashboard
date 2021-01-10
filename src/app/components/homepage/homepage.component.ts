@@ -12,12 +12,12 @@ export class HomepageComponent implements OnInit {
   private currentDate: Date = new Date();
 
   public recentEvents: any[] = [
-    {timestamp: this.currentDate, message: "Test activity for server #1"},
-    {timestamp: this.currentDate, message: "Test activity for server #2"},
-    {timestamp: this.currentDate, message: "Test activity for server #3"},
-    {timestamp: this.currentDate, message: "Test activity for server #4"},
-    {timestamp: this.currentDate, message: "Test activity for server #5"},
-    {timestamp: this.currentDate, message: "Test activity for server #6"},
+    {timestamp: this.currentDate, message: "Test a fake event for server #1"},
+    {timestamp: this.currentDate, message: "Test a fake event for server #2"},
+    {timestamp: this.currentDate, message: "Test a fake event for server #3"},
+    {timestamp: this.currentDate, message: "Test a fake event for server #4"},
+    {timestamp: this.currentDate, message: "Test a fake event for server #5"},
+    {timestamp: this.currentDate, message: "Test a fake event for server #6"},
   ]
 
   constructor(private poseidon: PoseidonService) { }

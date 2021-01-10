@@ -2,10 +2,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CreateServerPageComponent } from './components/create-server-page/create-server-page.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
+import { QueryHealthchecksComponent } from './components/query-healthchecks/query-healthchecks.component';
 import { ServerOverviewComponent } from './components/server-overview/server-overview.component';
 import { ServerComponent } from './components/server/server.component';
-
-
 
 const routes: Routes = [
   {
@@ -23,6 +22,7 @@ const routes: Routes = [
     ]
   },
   { path: 'create', component: CreateServerPageComponent },
+  { path: 'query', component: QueryHealthchecksComponent },
   { path: '', component: HomepageComponent, pathMatch: 'full' }
 ];
 

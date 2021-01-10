@@ -1,0 +1,28 @@
+<h2 mat-dialog-title>How to use PQL</h2>
+<mat-dialog-content class="mat-typography">
+  <p>PQL is Poseidon Query Language. It is used to query health checks to easily filter servers.</p>
+
+  <p>PQL is quite easy to use. You can query any health check data item. You can compare this using one of the following comparisons:</p>
+
+  <ul>
+      <li>Not equal: !=</li>
+      <li>Equals: ==</li>
+      <li>Greater than: ></li>
+      <li>Greater or equal: >=</li>
+      <li>Less than: <</li>
+      <li>Less or equal: <=</li>
+  </ul>
+
+  <p>You can also use multiple comparisons by using the <b>AND</b> keyword</p>
+
+  <p>A few examples:</p>
+
+  <ul>
+      <li>ramAvailable >= 4 AND cpuUsage < 50</li>
+      <li>ramAvailable <= 12</li>
+      <li>ramUsage > 75</li>
+  </ul>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

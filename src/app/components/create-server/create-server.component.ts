@@ -153,8 +153,6 @@ export class CreateServerComponent {
     serverRequest.size = this._getSize(this.sizeControl.value).name;
     serverRequest.sshKeyId = this._getSshKey(this.sshKeyControl.value).id;
 
-    console.log(serverRequest);
-
     this.poseidon.createServer(this.providerName, serverRequest).subscribe(server => {
       this.router.navigate([`/servers/${server.id}`]);
     }, httpError => {

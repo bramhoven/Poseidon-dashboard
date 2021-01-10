@@ -74,4 +74,9 @@ export class PoseidonService {
     var url = `${environment.poseidon.host}/poseidon/servers/${serverId}/healthchecks`;
     return this.http.get<HealthCheck[]>(url);
   }
+
+  runHealthCheckQuery(query: string): Observable<HealthCheck[]> {
+    var url = `${environment.poseidon.host}/healthchecks/query?query=${query}`;
+    return this.http.get<HealthCheck[]>(url);
+  }
 }

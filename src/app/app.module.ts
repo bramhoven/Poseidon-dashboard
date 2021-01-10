@@ -39,6 +39,8 @@ import { CreateServerDialogComponent } from './components/create-server-dialog/c
 import { CreateServerPageComponent } from './components/create-server-page/create-server-page.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { HealthcheckGraphComponent } from './components/healthcheck-graph/healthcheck-graph.component';
+import { QueryHealthchecksComponent } from './components/query-healthchecks/query-healthchecks.component';
+import { PqlInfoDialogComponent } from './components/pql-info-dialog/pql-info-dialog.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,9 @@ import { HealthcheckGraphComponent } from './components/healthcheck-graph/health
     CreateServerDialogComponent,
     CreateServerPageComponent,
     ConfirmDialogComponent,
-    HealthcheckGraphComponent
+    HealthcheckGraphComponent,
+    QueryHealthchecksComponent,
+    PqlInfoDialogComponent
   ],
   imports: [
     BrowserModule,
