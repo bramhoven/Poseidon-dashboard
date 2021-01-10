@@ -80,14 +80,15 @@ export class HealthcheckGraphComponent {
   private createChartDate() {
     let data: {[id: string]: number[]} = {};
     this.lineChartLabels = [];
-    for(let healthCheck of this.healthChecks) {
+    for(let i = 0; i < this.healthChecks.length; i++) {
+      let healthCheck = this.healthChecks[i];
       var date = new Date(healthCheck.date);
       this.lineChartLabels.push(`${date.toLocaleDateString()} ${date.toLocaleTimeString()}`);
       for(let dataItem of healthCheck.dataItems) {
         if(!(dataItem.name in data))
-          data[dataItem.name] = [];
+          data[dataItem.name] = [].fill(0, 0, this.healthChecks.length);
         
-        data[dataItem.name].push(dataItem.data)
+          data[dataItem.name][i] = dataItem.data;
       }
     }
 
