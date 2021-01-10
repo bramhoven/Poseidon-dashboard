@@ -11,6 +11,7 @@ import { ServerSize } from 'src/app/models/poseidon/server-size.model';
 import { Region } from 'src/app/models/poseidon/region.model';
 import { PublicSshKey } from 'src/app/models/poseidon/public-ssh-key.model';
 import { CreateServerRequest } from 'src/app/models/poseidon/requests/create-server-request.model';
+import { HealthCheck } from 'src/app/models/poseidon/health-check.model';
 
 @Injectable({
   providedIn: 'root'
@@ -67,5 +68,10 @@ export class PoseidonService {
   createServer(provider: CloudProvider, server: CreateServerRequest): Observable<Server> {
     var url = `${environment.poseidon.host}/${provider.slug}/servers`;
     return this.http.post<Server>(url, server);
+  }
+
+  getHealthChecks(serverId: string): Observable<HealthCheck[]> {
+    var url = `${environment.poseidon.host}/poseidon/servers/${serverId}/healthchecks`;
+    return this.http.get<HealthCheck[]>(url);
   }
 }

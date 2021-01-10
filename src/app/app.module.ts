@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
+import { ChartsModule } from 'ng2-charts';
+
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -36,6 +38,7 @@ import { CreateServerComponent } from './components/create-server/create-server.
 import { CreateServerDialogComponent } from './components/create-server-dialog/create-server-dialog.component';
 import { CreateServerPageComponent } from './components/create-server-page/create-server-page.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { HealthcheckGraphComponent } from './components/healthcheck-graph/healthcheck-graph.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +52,8 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     CreateServerComponent,
     CreateServerDialogComponent,
     CreateServerPageComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    HealthcheckGraphComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +80,8 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     MatAutocompleteModule,
     MatProgressSpinnerModule,
     MatTabsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -31,6 +31,11 @@
                     </table>
                 </div>
             </mat-tab>
+            <mat-tab label="Health checks">
+                <div class="tab-content">
+                    <healthcheck-graph [server]="server"></healthcheck-graph>
+                </div>
+            </mat-tab>
             <mat-tab label="Administration">
                 <div class="tab-content">
                     <button mat-raised-button color="warn" (click)="confirmDeleteServer()">Delete</button>
