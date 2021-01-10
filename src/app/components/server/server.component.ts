@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ErrorModel } from 'src/app/models/poseidon/error.model';
+import { ServerStatus } from 'src/app/models/poseidon/server-status.model';
 import { Server } from 'src/app/models/poseidon/server.model';
 import { PoseidonService } from 'src/app/services/poseidon/poseidon.service';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
@@ -53,5 +54,24 @@ export class ServerComponent implements OnInit {
         verticalPosition: 'top',
       });
     });
+  }
+
+  public getServerStatus(server: Server): string {
+    return ServerStatus[server.status];
+  }
+
+  public getServerStatusColor(server: Server): string {
+    switch(server.status){
+      case ServerStatus.Failing:
+        return "failing";
+      case ServerStatus.Offline:
+        return "offline";
+      case ServerStatus.Unknown:
+        return "unknown";
+      case ServerStatus.Running:
+        return "running";
+      case ServerStatus.Slow:
+        return "slow";
+    }
   }
 }

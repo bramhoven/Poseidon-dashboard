@@ -1,11 +1,15 @@
 .mat-table {
     width: 100%;
 
+    .mat-column-status {
+        width: 150px;
+    }
+
     .mat-column-id {
-        width: 300px;
+        width: 500px;
     }
 
     .mat-column-name {
-        width: 300px;
+        width: 500px;
     }
 }

@@ -1,6 +1,15 @@
 <mat-card>
     <mat-card-title>
-        <h1>{{server?.name}}</h1>
+        <div class="title-container" fxLayout="row" fxLayoutGap="20px">
+            <h1>
+                {{server?.name}}
+            </h1>
+            <mat-chip-list>
+                <mat-chip class="status-chip status-{{getServerStatusColor(server)}}">
+                    {{getServerStatus(server)}}
+                </mat-chip>
+            </mat-chip-list>
+        </div>
     </mat-card-title>
     <mat-card-subtitle>
         <p>{{server?.cloudProvider?.name || 'No Cloud?'}}</p>

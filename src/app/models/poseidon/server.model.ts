@@ -1,5 +1,6 @@
 import { CloudProvider } from "./cloud-provider.model";
 import { PublicSshKey } from "./public-ssh-key.model";
+import { ServerStatus } from "./server-status.model";
 
 export class Server {
     public id: string;
@@ -9,4 +10,5 @@ export class Server {
     public mainIpAddress: string;
     public cloudProvider: CloudProvider;
     public publicSshKey: PublicSshKey;
+    public status: ServerStatus;
 }
