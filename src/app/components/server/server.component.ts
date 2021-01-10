@@ -57,24 +57,22 @@ export class ServerComponent implements OnInit {
   }
 
   public getServerStatus(server: Server): string {
-    return ServerStatus[server.status];
+    return server !== undefined ? ServerStatus[server.status] : ServerStatus[ServerStatus.Unknown];
   }
 
   public getServerStatusColor(server: Server): string {
-    if(server !== undefined) {
-      switch(server.status){
-        case ServerStatus.Failing:
-          return "failing";
-        case ServerStatus.Offline:
-          return "offline";
-        case ServerStatus.Unknown:
-          return "unknown";
-        case ServerStatus.Running:
-          return "running";
-        case ServerStatus.Slow:
-          return "slow";
-      }
+    switch(server?.status){
+      case ServerStatus.Failing:
+        return "failing";
+      case ServerStatus.Offline:
+        return "offline";
+      case ServerStatus.Running:
+        return "running";
+      case ServerStatus.Slow:
+        return "slow";
+      case ServerStatus.Unknown:
+      default:
+        return "unknown";
     }
-    return "unknown";
   }
 }
