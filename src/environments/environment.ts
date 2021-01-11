@@ -6,6 +6,15 @@ export const environment = {
   production: false,
   poseidon: {
     host: 'http://localhost:8080'
+  },
+  firebase: {
+    apiKey: "AIzaSyAZrdrvhubsJ-jwHkFzYSVwpMD9IaWUX98",
+    authDomain: "poseidon-dashboard.firebaseapp.com",
+    projectId: "poseidon-dashboard",
+    storageBucket: "poseidon-dashboard.appspot.com",
+    messagingSenderId: "263125247074",
+    appId: "1:263125247074:web:eae6a61d8b8134693c9d3b",
+    measurementId: "G-05XR204W01"
   }
 };
 

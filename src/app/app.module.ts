@@ -3,6 +3,10 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
+import { environment } from '../environments/environment';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAnalyticsModule, ScreenTrackingService } from '@angular/fire/analytics';
+
 import { ChartsModule } from 'ng2-charts';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -85,9 +89,11 @@ import { PqlInfoDialogComponent } from './components/pql-info-dialog/pql-info-di
     MatProgressSpinnerModule,
     MatTabsModule,
     MatSnackBarModule,
-    ChartsModule
+    ChartsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAnalyticsModule
   ],
-  providers: [],
+  providers: [ScreenTrackingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

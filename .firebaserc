@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "poseidon-dashboard": {
+      "hosting": {
+        "poseidon-dashboard": [
+          "poseidon-dashboard"
+        ]
+      }
+    }
+  }
+}
