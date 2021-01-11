@@ -1,6 +1,6 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
-import { Color, BaseChartDirective, Label } from 'ng2-charts';
+import { BaseChartDirective, Label } from 'ng2-charts';
 import { HealthCheck } from 'src/app/models/poseidon/health-check.model';
 import { Server } from 'src/app/models/poseidon/server.model';
 import { PoseidonService } from 'src/app/services/poseidon/poseidon.service';
