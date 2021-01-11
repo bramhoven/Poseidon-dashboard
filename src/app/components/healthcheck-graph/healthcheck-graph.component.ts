@@ -83,6 +83,7 @@ export class HealthcheckGraphComponent {
     for(let i = 0; i < this.healthChecks.length; i++) {
       let healthCheck = this.healthChecks[i];
       var date = new Date(healthCheck.date);
+      date.setHours(date.getHours() -1);
       this.lineChartLabels.push(`${date.toLocaleDateString()} ${date.toLocaleTimeString()}`);
       for(let dataItem of healthCheck.dataItems) {
         if(!(dataItem.name in data))
